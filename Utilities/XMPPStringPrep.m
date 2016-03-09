@@ -6,6 +6,10 @@
 
 + (NSString *)prepNode:(NSString *)node
 {
+#if XMPP_STRING_PREP_DISABLED
+	return node;
+#endif 
+
 	if(node == nil) return nil;
 	
 	// Each allowable portion of a JID MUST NOT be more than 1023 bytes in length.
@@ -21,6 +25,10 @@
 
 + (NSString *)prepDomain:(NSString *)domain
 {
+#if XMPP_STRING_PREP_DISABLED
+	return domain;
+#endif
+
 	if(domain == nil) return nil;
 	
 	// Each allowable portion of a JID MUST NOT be more than 1023 bytes in length.
@@ -36,6 +44,10 @@
 
 + (NSString *)prepResource:(NSString *)resource
 {
+#if XMPP_STRING_PREP_DISABLED
+	return resource;
+#endif
+
 	if(resource == nil) return nil;
 	
 	// Each allowable portion of a JID MUST NOT be more than 1023 bytes in length.
@@ -51,6 +63,10 @@
 
 + (NSString *)prepPassword:(NSString *)password
 {
+#if XMPP_STRING_PREP_DISABLED
+	return password;
+#endif 
+
 	if(password == nil) return nil;
 	
 	// Each allowable portion of a JID MUST NOT be more than 1023 bytes in length.
