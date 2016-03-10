@@ -419,42 +419,14 @@ enum XMPPRosterFlags
 }
 
 /**
- * Some server's include in our roster the JID's of user's NOT in our roster.
- * This happens when another user adds us to their roster, and requests permission to receive our presence.
- * 
- * As discussed in RFC 3921, the state of the other user is "None + Pending In",
- * and the server "SHOULD NOT" include these JID's in the roster it sends us.
- * 
- * Nonetheless, some servers do anyway.
- * This method filters out such rogue entries in our roster.
- * 
- * Note that the server will automatically send us the proper presence subscription request,
- * and it will continue to do so everytime we sign in.
- * From the RFC:
- *     the user's server MUST keep a record of the subscription request and deliver the request when the
- *     user next creates an available resource, until the user either approves or denies the request.
- * 
- * So there is absolutely NO reason to process these entries, or include them in the roster's storage.
- * Furthermore, it isn't reliable to depend on these entires being there.
- * The RFC has clearly defined recommendations on the matter, and servers that currently send these rogue items
- * may very likely stop doing so in future versions.
+ * This method has been modified to always return true as our server-side 
+ * implementation will set roster item subscription values to none (as there's
+ * no need to subscribe to a room's presence). By changing this implementation,
+ * it will allow these items to be added to the roster store (where they would
+ * otherwise not be added).
 **/
 - (BOOL)isRosterItem:(NSXMLElement *)item
 {
-	NSString *subscription = [item attributeStringValueForName:@"subscription"];
-	if ([subscription isEqualToString:@"none"])
-	{
-		NSString *ask = [item attributeStringValueForName:@"ask"];
-		if ([ask isEqualToString:@"subscribe"])
-		{
-			return YES;
-		}
-		else
-		{
-			return NO;
-		}
-	}
-	
 	return YES;
 }
 
