@@ -331,4 +331,9 @@
 **/
 - (void)addDidSaveManagedObjectContextBlock:(void (^)(void))didSaveBlock;
 
+/**
+ * Saves if the current pending requests is 0
+**/
+- (void)maybeSave:(int32_t)currentPendingRequests;
+
 @end

@@ -42,18 +42,18 @@
 	
 	NSMutableDictionary *myJidCache;
 	
-	int32_t pendingRequests;
-	
 	NSManagedObjectModel *managedObjectModel;
 	NSPersistentStoreCoordinator *persistentStoreCoordinator;
-	NSManagedObjectContext *managedObjectContext;
-	NSManagedObjectContext *mainThreadManagedObjectContext;
     
     NSMutableArray *willSaveManagedObjectContextBlocks;
     NSMutableArray *didSaveManagedObjectContextBlocks;
 	
 @protected
 	
+	NSManagedObjectContext *managedObjectContext;
+	NSManagedObjectContext *mainThreadManagedObjectContext;
+	int32_t pendingRequests;
+
 	NSString *databaseFileName;
     NSDictionary *storeOptions;
 	NSUInteger saveThreshold;
@@ -163,5 +163,12 @@
  * Default NO
 **/
 @property (readwrite) BOOL autoAllowExternalBinaryDataStorage;
+
+
+/**
+ * Handle notification that a managed object context has saved
+ * Made public for subclasses benefit
+**/
+- (void)managedObjectContextDidSave:(NSNotification *)notification;
 
 @end
