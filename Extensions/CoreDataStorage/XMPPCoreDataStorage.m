@@ -665,8 +665,7 @@ static NSMutableSet *databaseFileNames;
 	if (coordinator)
 	{
 		XMPPLogVerbose(@"%@: Creating managedObjectContext", [self class]);
-		
-        managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
 		managedObjectContext.persistentStoreCoordinator = coordinator;
 		
 		[self didCreateManagedObjectContext];
