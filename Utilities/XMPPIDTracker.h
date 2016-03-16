@@ -119,7 +119,7 @@ extern const NSTimeInterval XMPPIDTrackerTimeoutNone;
 **/
 @interface XMPPIDTracker : NSObject
 {
-    XMPPStream *xmppStream;
+    __weak XMPPStream *xmppStream;
 	dispatch_queue_t queue;
 	
 	NSMutableDictionary *dict;

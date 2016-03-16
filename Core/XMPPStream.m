@@ -266,8 +266,6 @@ enum XMPPStreamConfig
 		dispatch_source_cancel(keepAliveTimer);
 	}
     
-    [idTracker removeAllIDs];
-    
 	for (XMPPElementReceipt *receipt in receipts)
 	{
 		[receipt signalFailure];
